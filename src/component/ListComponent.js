@@ -1,6 +1,7 @@
-import AddComponent from "./AddComponent";
+
 import {useCallback, useEffect, useState} from "react";
 import {getAll} from "../service/studentService";
+import {Link, useLocation} from "react-router-dom";
 import DeleteComponent from "./DeleteComponent";
 
 const ListComponent =()=>{
@@ -25,13 +26,16 @@ const ListComponent =()=>{
     return <>
         {console.log("----list render -----------------")}
         <h1 className={'test'}>Danh sách</h1>
-        <AddComponent  setIsLoading = {setIsLoading} />
         <table>
             <thead>
             <tr>
                 <th>STT</th>
                 <th>ID</th>
                 <th>Name</th>
+                <th>Gender</th>
+                <th>Subject</th>
+                <th>Class name</th>
+                <th>View</th>
                 <th>Delete</th>
             </tr>
             </thead>
@@ -41,6 +45,14 @@ const ListComponent =()=>{
                     <td>{i+1}</td>
                     <td>{s.id}</td>
                     <td>{s.name}</td>
+                    <td>{s.gender?"Male":"Female"}</td>
+                    <td>
+                        {s.subject}
+                    </td>
+                    <td>{s.classCG?.name}</td>
+                    <td>
+                        <Link to={`/detail/${s.id}`}>Detail</Link>
+                    </td>
                     <td>
                         <button onClick={()=>{handleShowModal(s)}}>Delete</button>
                     </td>
