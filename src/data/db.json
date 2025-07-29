@@ -1,0 +1,82 @@
+{
+  "students": [
+    {
+      "id": "1",
+      "name": "chánh",
+      "gender": true,
+      "subject": [
+        "JS",
+        "Java"
+      ],
+      "classCG": {
+        "id": "1",
+        "name": "C02"
+      }
+    },
+    {
+      "id": "2",
+      "name": "chánh",
+      "gender": true,
+      "subject": [
+        "JS",
+        "Java"
+      ],
+      "classCG": {
+        "id": "1",
+        "name": "C02"
+      }
+    },
+    {
+      "id": "3",
+      "name": "chánh",
+      "gender": true,
+      "subject": [
+        "JS",
+        "Java"
+      ],
+      "classCG": {
+        "id": "1",
+        "name": "C02"
+      }
+    },
+    {
+      "id": "4",
+      "name": "chánh",
+      "gender": true,
+      "subject": [
+        "JS",
+        "Java"
+      ],
+      "classCG": {
+        "id": "1",
+        "name": "C02"
+      }
+    }
+  ],
+  "classes": [
+    {
+      "id": "1",
+      "name": "C02"
+    },
+    {
+      "id": "2",
+      "name": "C03"
+    },
+    {
+      "id": "3",
+      "name": "C04"
+    }
+  ],
+  "accounts": [
+    {
+      "id": 1,
+      "username": "chanhtv",
+      "password": "123"
+    },
+    {
+      "id" : 2,
+      "username": "haitt",
+      "password": "123"
+    }
+  ]
+}

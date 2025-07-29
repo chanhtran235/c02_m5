@@ -79,7 +79,7 @@ function AddComponent() {
                     <Field as ="select" name ="classCG">
 
                         {classList.map(cls=>
-                         <option value={JSON.stringify(cls)}>{cls.name}</option>
+                         <option key={cls.id} value={JSON.stringify(cls)}>{cls.name}</option>
                         )}
 
                     </Field>

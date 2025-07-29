@@ -3,29 +3,42 @@ import {useCallback, useEffect, useState} from "react";
 import {getAll} from "../service/studentService";
 import {Link, useLocation} from "react-router-dom";
 import DeleteComponent from "./DeleteComponent";
+import LoadingSpinner from "./LoadingSpinner";
 
 const ListComponent =()=>{
     const [studentList, setStudentList] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [isShowModal, setIsShowModal] = useState(false);
     const [deleteStudent, setDeleteStudent] = useState({id:0,name:""});
-    useEffect(()=>{
+    useEffect( ()=>{
         console.log(" --------useEffect run-----------");
-        setStudentList([...getAll()])
-    },[isLoading,isShowModal]);
+        fetData();
+        return ()=>{
+            console.log(" componet list đã bị unmount")
+        }
+
+    },[]);
+    const fetData = async ()=>{
+        setIsLoading(true);
+        let list = await getAll();
+        setStudentList(list);
+        setIsLoading(false);
+    }
 
     const handleShowModal =(student)=>{
-        setIsShowModal(pre =>!pre);
+        setIsShowModal(true);
         setDeleteStudent(student);
     }
 
     // sử dụng userCallback để không render lại modal khi không cần thiết=> tăng hiệu năng chương trình
     const handleCloseModal =useCallback(()=>{
-        setIsShowModal(pre =>!pre);
+        setIsShowModal(false);
+        fetData();
     },[]);
     return <>
         {console.log("----list render -----------------")}
         <h1 className={'test'}>Danh sách</h1>
+        {isLoading&&<LoadingSpinner/>}
         <table>
             <thead>
             <tr>

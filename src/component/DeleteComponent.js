@@ -1,13 +1,20 @@
 import {Button, Modal} from "react-bootstrap";
 import {deleteById, getAll} from "../service/studentService";
-import React from "react";
+import React, {useEffect} from "react";
+import {useNavigate} from "react-router-dom";
 
 function DeleteComponent({deleteStudent,isShowModal,handleCloseModal}){
     const handleDelete = ()=>{
-       deleteById(deleteStudent.id);
-        console.log(getAll());
-        handleCloseModal();
+       deleteById(deleteStudent.id).then(status=>{
+         handleCloseModal();
+       });
+
     }
+    useEffect(() => {
+        return ()=>{
+            console.log("component delete đã unmount")
+        }
+    }, []);
     return <>
         {console.log("------delete modal-------------")}
         <Modal show={isShowModal} onHide={handleCloseModal}>

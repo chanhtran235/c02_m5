@@ -1,37 +1,55 @@
+import axios from "axios";
 
-export  let studentList = [
+export let studentList = [
     {
-        id:"1",
-        name:"chánh",
+        id: "1",
+        name: "chánh",
         gender: true,
-        subject: ["JS","Java"],
+        subject: ["JS", "Java"],
         classCG: {
             id: "2",
             name: "C03"
         }
     },
     {
-        id:"2",
-        name:"Hiền",
+        id: "2",
+        name: "Hiền",
         gender: false,
-        subject: ["JS","Java"],
+        subject: ["JS", "Java"],
         classCG: {
             id: "2",
             name: "C03"
         }
     }
 ]
-export function getAll(){
-    // call API
-    return studentList;
-}
-export function addNew(student){
-    studentList.push(student);
-}
-export function deleteById(id){
-    studentList = studentList.filter(s=>s.id!==id);
+const URL = 'http://localhost:3001/students';
+
+export async function getAll() {
+    try {
+        await new Promise(resolve => setTimeout(resolve, 500));
+        const response = await axios.get(URL);
+        return response.data;
+    } catch (e) {
+        console.error('Lỗi gọi API:', e);
+        return null;
+    }
+
 }
 
-export function findById(id){
-    return studentList.find(e=>id==e.id);
+export function addNew(student) {
+    studentList.push(student);
+}
+
+export async function deleteById(id) {
+    try {
+        const response = await axios.delete(`${URL}/${id}`);
+        return response.status;
+    } catch (e) {
+        console.error('Lỗi gọi API:', e);
+        return e.status;
+    }
+}
+
+export function findById(id) {
+    return studentList.find(e => id == e.id);
 }
